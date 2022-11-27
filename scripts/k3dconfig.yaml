@@ -1,0 +1,26 @@
+---
+apiVersion: k3d.io/v1alpha3
+kind: Simple
+name: mycluster
+servers: 1
+agents: 2
+image: docker.io/rancher/k3s:v1.23.6-k3s1
+# ports:
+# - port: 30000-30010:30000-30010
+#   nodeFilters:
+#     - server:0:direct
+options:
+  # k3d:
+  #   disableLoadbalancer: true
+  k3s:
+    extraArgs: # additional arguments passed to the `k3s server|agent` command; same as `--k3s-arg`
+      # - arg: --disable=traefik
+      #   nodeFilters:
+      #     - server:0
+      - arg: --kube-proxy-arg=conntrack-max-per-core=0
+        nodeFilters:
+          - server:0
+          - agent:*
+      - arg: --node-taint=CriticalAddonsOnly=true:NoExecute
+        nodeFilters:
+          - server:0

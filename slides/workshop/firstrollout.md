@@ -22,7 +22,6 @@ To deploy our very first version we will deploy a Rollout and a matching Service
 --
 
 
-23 resource definitions (Used to be 50+, but things are improving)
 
 ---
 ## Exploring Istio on K8s
