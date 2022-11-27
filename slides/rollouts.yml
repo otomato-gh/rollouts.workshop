@@ -1,0 +1,28 @@
+title: |
+  Progressive Delivery on Kubernetes with Argo Rollouts
+
+gitrepo: github.com/otomato-gh/rollouts.workshop
+
+slides: https://devopstrain.pro/rollouts
+
+chapters:
+
+- workshop/title.md
+- workshop/intro.md
+- workshop/toc.md
+- - workshop/progdel.md
+- - workshop/basics.md
+  - workshop/firstrollout.md
+  - workshop/dashboard.md
+- - workshop/demoapp.md
+  - workshop/observability.md
+  - workshop/grafana.md
+  - workshop/tracing.md
+- - workshop/deployments.md
+  - workshop/progressive.md
+  - workshop/trafficmgmt.md
+  - workshop/ourappwithworkshop.md
+  - workshop/darklaunch.md
+  - workshop/mirroring.md
+  - workshop/canary.md
+- - workshop/summary.md
