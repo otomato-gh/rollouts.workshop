@@ -14,7 +14,7 @@ A **Rollout** is a Kubernetes workload resource which is equivalent to a Kuberne
 ---
 ## Ingress/Service
 
-This is the mechanism that allows traffic from live users enter your cluster and be redirected to the appropriate version. Argo Rollouts use the standard Kubernetes *service* resource, but with some extra metadata needed for management.
+This is the mechanism that allows traffic from live users to enter your cluster and be redirected to the appropriate version. Argo Rollouts use the standard Kubernetes *Service* resource, but with some extra metadata needed for management.
 
 Argo Rollouts is very flexible on networking options. First of all you can have different services during a Rollout, that go only to the new version, only to the old version or both. Specifically for Canary deployments, Argo Rollouts supports several service mesh and ingress solutions for splitting traffic with specific percentages instead of simple balancing based on pod counts and it is possible to use multiple routing providers simultaneously.
 
@@ -38,3 +38,23 @@ An *Experiment* is a limited run of one or more ReplicaSets for the purposes of 
 Experiments may reference an AnalysisTemplate to run during or after the experiment. 
 
 The canonical use case for an Experiment is to start a baseline and canary deployment in parallel, and compare the metrics produced by the baseline and canary pods for an equal comparison.
+
+---
+
+## Explore Argo Rollouts 
+
+Let's see what Argo Rollouts components we have in our cluster
+.exercise[
+  ```bash
+  kubectl get all -n argo-rollouts
+  ```
+]
+
+And the custom resources used to configure the rollouts.
+
+.exercise[
+  ```bash
+  kubectl get crds | grep argo
+  ```
+]
+

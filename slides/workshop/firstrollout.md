@@ -12,11 +12,11 @@ To deploy our very first version we will deploy a Rollout and a matching Service
 .exercise[
 - Deploy the Rollout
   ```bash
-  kubectl apply ~/rollouts.workshop/code/rollout.yml
+  kubectl apply -f ~/rollouts.workshop/code/rollout.yaml
   ```
 - Deploy the Service
   ```bash
-  kubectl apply ~/rollouts.workshop/code/service.yml
+  kubectl apply -f ~/rollouts.workshop/code/service.yaml
   ```
 ]
 --
@@ -24,35 +24,62 @@ To deploy our very first version we will deploy a Rollout and a matching Service
 
 
 ---
-## Exploring Istio on K8s
+## What did we roll out?
 
- - Ok, that's where config is stored. But where are the processes?
+ - Let's look at rollout.yaml
 
-```bash
-kubectl get pod
+```yaml
+spec:
+  replicas: 5
+  strategy:
+    canary:     # The strategy is Canary Deployment
+      steps:
+      - setWeight: 20 # We first send 20% to the canary
+      - pause: {}     # We wait for a manual promotion
+      - setWeight: 40 # Promote canary to 40%
+      - pause: {duration: 10} # Wait 10 sec
+      - setWeight: 60 # Promote canary to 60%
+      - pause: {duration: 10}
+      - setWeight: 80 # Promote canary to 80%
+      - pause: {duration: 10} # Wait 10 sec
+      # Finally canary replaces previous version
 ```
- - Nothing here... Are they in kube-system?
 
-```bash
-kubectl get pod -n kube-system
-```
- - Not here too!
 ---
 
-## Exploring Istio on K8s
+## Watching the Rollout
 
- - Let's look somewhere else
+Initial creations of any Rollout will immediately scale up the replicas to 100% (skipping any canary upgrade steps, analysis, etc...) since there was no upgrade that occurred.
 
+The Argo Rollouts **kubectl plugin** allows you to visualize the Rollout, its related resources (ReplicaSets, Pods, AnalysisRuns), and presents live state changes as they occur. To watch the rollout as it deploys, run the get rollout --watch command from plugin:
+
+.exercise[
 ```bash
-kubectl get ns
+kubectl argo rollouts get rollout rollouts-demo --watch
+ # or rather
+kar get rollout rollouts-demo --watch
 ```
- - Hey, there's an *istio-system* namespace
+]
 
-```bash
-kubectl get pod -n istio-system
-```
+---
 
-- Now we're talking!
+## Updating the Rollout
 
-- But why so many?!
+- Now let's update the Rollout and see the magic of the staged deployment in action:
+
+.exercise[
+  ```bash
+  # Run in a new shell while "watch" is running
+  kar set image rollouts-demo rollouts-demo=argoproj/rollouts-demo:yellow
+  ```
+]
+
+- Go back to the first shell to watch the rollout progress
+
+---
+## Promoting the Rollout
+
+We can see from the plugin output that the Rollout is in a paused state, and now has 1 of 5 replicas running the new version of the pod template, and 4 of 5 replicas running the old version. 
+
+This equates to the 20% canary weight as defined by the `setWeight: 20` step.
 

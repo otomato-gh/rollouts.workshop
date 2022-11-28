@@ -31,9 +31,9 @@
 - On your Strigo VM:
 
   ```bash
-  git clone https://github.com/otomato-gh/rollouts.workshop.git 
   cd rollouts.workshop
-  ./prepare-vms/setup_rollouts.sh
+  chmod +x ./scripts/setup_rollouts.sh
+  ./scripts/setup_rollouts.sh
   # enter new shell for kubectl completion
   sudo su - ${USER}
   ```
@@ -41,3 +41,30 @@
 ]
 
 - This will install the Argo Rollouts controller in your k3d cluster
+
+- And the Argo Rollouts kubectl plugin. It is optional, but is convenient for managing and visualizing rollouts from the command line.
+
+---
+
+## The Argo Rollouts kubectl plugin
+
+- The commands for the plugin require a lot of typing:
+
+.exercise[ 
+  ```bash
+  kubectl argo rollouts get rollouts dummy
+  # compare that to:
+  kubectl get rollouts dummy
+  ``` 
+]
+
+- So instead let's define an alias:
+
+.exercise[
+  ```bash
+  alias kar="kubectl argo rollouts"
+  ```
+  ```bash
+  kar version
+  ```
+]
