@@ -1,6 +1,8 @@
 # Argo Rollouts Basic Concepts
 
-**A Rollout** is a Kubernetes workload resource which is equivalent to a Kubernetes Deployment object. It is intended to replace a Deployment object in scenarios when more advanced deployment or progressive delivery functionality is needed. A Rollout provides the following features which a Kubernetes Deployment cannot:
+## A Rollout
+
+A **Rollout** is a Kubernetes workload resource which is equivalent to a Kubernetes Deployment object. It is intended to replace a Deployment object in scenarios when more advanced deployment or progressive delivery functionality is needed. A Rollout provides the following features which a Kubernetes Deployment cannot:
 
  - blue-green deployments
  - canary deployments
