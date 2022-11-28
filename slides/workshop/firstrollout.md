@@ -79,7 +79,60 @@ kar get rollout rollouts-demo --watch
 ---
 ## Promoting the Rollout
 
-We can see from the plugin output that the Rollout is in a paused state, and now has 1 of 5 replicas running the new version of the pod template, and 4 of 5 replicas running the old version. 
+- We can see from the plugin output that the Rollout is in a paused state, and now has 1 of 5 replicas running the new version of the pod template, and 4 of 5 replicas running the old version. 
 
-This equates to the 20% canary weight as defined by the `setWeight: 20` step.
+- This equates to the 20% canary weight as defined by the `setWeight: 20` step.
 
+- When a Rollout reaches a pause step with no duration, it will remain in a paused state indefinitely until it is resumed/promoted. To manually promote a rollout to the next step, run the promote command of the plugin:
+
+.exercise[
+  ```bash
+  kar promote rollouts-demo
+  ```
+]
+
+- Watch the Rollout as it proceeds to execute the remaining steps.
+
+---
+
+## Aborting a Rollout
+
+- Sometimes a canary doesn't satisfy our quality requirements and we decide to abort it.
+
+- Let's see how.
+
+- First - let's deploy a new version:
+
+.exercise[
+  ```bash
+  kar set image rollouts-demo rollouts-demo=argoproj/rollouts-demo:red
+  ```
+]
+
+---
+
+## Aborting the Rollout
+
+- Watch the Rollout reach the paused state and roll back to the previous stable:
+
+.exercise[
+  ```bash
+  kar abort rollouts-demo
+  ```
+]
+
+- When a rollout is aborted, it will scale up the "stable" version of the ReplicaSet (in this case the `yellow` image), and scale down any other versions. Although the stable version of the ReplicaSet may be running and is healthy, the overall rollout is still considered Degraded, since the desired version (the red image) is not the version which is actually running.
+
+---
+
+## Going Back to Healthy
+
+- In order to make Rollout considered `Healthy` again and not `Degraded`, it is necessary to change the desired state back to the previous, stable version. This typically involves running `kubectl apply` against the previous Rollout spec. In our case, we can simply re-run the set image command using the previous, "yellow" image.
+
+.exercise[
+```bash
+kar set image rollouts-demo rollouts-demo=argoproj/rollouts-demo:yellow
+```
+]
+
+- After running this command, you should notice that the Rollout immediately becomes `Healthy`, and there is no activity with regards to new ReplicaSets becoming created.
