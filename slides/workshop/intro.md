@@ -31,8 +31,8 @@
 - On your Strigo VM:
 
   ```bash
+  git clone https://github.com/otomato-gh/rollouts.workshop.git
   cd rollouts.workshop
-  chmod +x ./scripts/setup_rollouts.sh
   ./scripts/setup_rollouts.sh
   # enter new shell for kubectl completion
   sudo su - ${USER}
