@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: demo 
+spec:
+  routes: 
+  - kind: Rule
+    match: Host(`demo.<MY_IP>.nip.io`)
+    services: 
+    - kind: TraefikService
+      name: rollouts-service
+      namespace: default
+      port: 80
+      scheme: http
+      strategy: RoundRobin

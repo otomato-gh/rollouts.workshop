@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prometheus
+spec:
+  routes: 
+  - kind: Rule
+    match: Host(`prom.<MY_IP>.nip.io`)
+    services:                       # [8]
+    - kind: Service
+      name: prometheus
+      namespace: default
+      port: 9090
+      scheme: http
+      strategy: RoundRobin
