@@ -12,9 +12,9 @@ Techniques we will be looking at today are:
 
 - Canary deployments
 
+- Traffic Mirroring
+
 - Experiments
-
-
 ---
 
 ## Blue-Green
@@ -33,9 +33,17 @@ A Blue-Green deployment (sometimes referred to as a Red-Black) has both the new 
 
 ---
 
+## Traffic Mirroring
+*Traffic Mirroring* (or traffic shadowing) is more of a testing technique whereas we release the new version to production and channel all the production traffic to it.
+This happens in parallel to serving this traffic by the old version. 
+No responses are sent back from the new version. This allows us to test the new version with full production traffic and data without impacting our users.
+
+![img alt=><](images/mirroring.png)
+
+---
 ## Experiments
 
-**Experiments** AKA A/B Testing is more of a testing technique whereas we release 2 or more versions to production and run the for a specifed period in order to analyse their performance. 
+**Experiments** AKA A/B Testing is also a testing technique whereas we release 2 or more versions to production and run the for a specifed period in order to analyse their performance. 
 
 This can be a technical step in the process of either blue-green or canary rollout. 
 
@@ -43,6 +51,7 @@ Or it can be a stand-alone technique for verifying feature completeness of a ver
 
 
 ---
+
 ## How Can Rollouts Help
 
 - With Argo Rollouts we can define and manage precisely:
