@@ -1,10 +1,14 @@
-# Install Kiali
+# The Rollouts Dashboard
 
-```bash
-export KIALI_IMAGE_VERSION=v0.20
-bash <(curl -L https://git.io/getLatestKialiOperator)
-```
+The Argo Rollouts Kubectl plugin can serve a local UI Dashboard to visualize your Rollouts.
 
-## Let's Look at Kiali UI
+Let's  take a look:
 
-```bash
+.exercise[
+    ```bash
+    kar dashboard
+    ```
+]
+
+Then visit localhost:3100 to view the user interface.
+

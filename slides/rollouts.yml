@@ -14,7 +14,7 @@ chapters:
 - - workshop/basics.md
   - workshop/firstrollout.md
   - workshop/dashboard.md
-- - workshop/demoapp.md
+- - workshop/traffic.md
   - workshop/observability.md
   - workshop/grafana.md
   - workshop/tracing.md
