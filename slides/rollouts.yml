@@ -15,14 +15,5 @@ chapters:
   - workshop/firstrollout.md
   - workshop/dashboard.md
 - - workshop/traffic.md
-  - workshop/observability.md
-  - workshop/grafana.md
-  - workshop/tracing.md
-- - workshop/deployments.md
-  - workshop/progressive.md
-  - workshop/trafficmgmt.md
-  - workshop/ourappwithworkshop.md
-  - workshop/darklaunch.md
-  - workshop/mirroring.md
-  - workshop/canary.md
+- - workshop/analyzed.md
 - - workshop/summary.md
