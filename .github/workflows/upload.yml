@@ -49,6 +49,5 @@ jobs:
       - name: copy file via ssh password
         run: |
           export FILES="index.html images *.js *.css *.png"
-          cd slides && sshpass -p ${{ secrets.FTP_PASS }} scp -v -o StrictHostKeyChecking=no \
-             -o UserKnownHostsFile=/dev/null -rp ${FILES} \ 
-             antweis1@${{ secrets.FTP_URL }}:public_html/devopstrain/rollouts/"
+          cd slides
+          sshpass -p ${{ secrets.FTP_PASS }} scp -v -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -rp ${FILES} antweis1@${{ secrets.FTP_URL }}:public_html/devopstrain/rollouts/"
