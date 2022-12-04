@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Install Python 3
         run: |
-          apt update && apt install python3 pip3 git zip
+          sudo apt update && sudo apt install python3 pip3 git zip
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build
