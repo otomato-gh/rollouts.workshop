@@ -45,7 +45,7 @@ jobs:
           cd slides
           pip install -r requirements.txt
           ./build.sh once
-          mv rollouts.html index.html
+          mv rollouts.yml.html index.html
       - name: copy file via ssh password
         run: |
           export FILES="index.html images *.js *.css *.png"
