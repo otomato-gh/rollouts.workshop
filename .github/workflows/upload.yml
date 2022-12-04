@@ -1,0 +1,52 @@
+# Sample workflow for building and deploying a Hugo site to GitHub Pages
+name: Deploy Hugo site to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Python 3
+        run: |
+          apt update && apt install python3 pip3 git zip
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        env:
+          # For maximum backward compatibility with Hugo modules
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+        run: |
+          pip install PyYAML jinja2
+          cd slides && ./build.sh once
+          mv rollouts.html index.html
+      - name: copy file via ssh password
+        run: |
+          export FILES="index.html images *.js *.css *.png"
+          cd slides && sshpass -p ${{ secrets.FTP_PASS }} scp -v -o StrictHostKeyChecking=no \
+             -o UserKnownHostsFile=/dev/null -rp ${FILES} \ 
+             antweis1@${{ secrets.FTP_URL }}:public_html/devopstrain/rollouts/"
