@@ -21,7 +21,7 @@ Techniques we will be looking at today are:
 
 A Blue-Green deployment (sometimes referred to as a Red-Black) has both the new and old version of the application deployed at the same time. During this time, only the old version of the application will receive production traffic. This allows the developers to run tests against the new version before switching the live traffic to the new version.
 
-![img alt=><](images/blue-green-deployments.png)
+![img alt=><](images/bluegreen.png)
 
 ---
 
