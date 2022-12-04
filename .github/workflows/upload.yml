@@ -41,7 +41,7 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
-          pip install PyYAML jinja2
+          pip install -r requirements.txt
           cd slides && ./build.sh once
           mv rollouts.html index.html
       - name: copy file via ssh password
