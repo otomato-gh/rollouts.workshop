@@ -57,6 +57,8 @@ Or it can be a stand-alone technique for verifying feature completeness of a ver
 - With Argo Rollouts we can define and manage precisely:
   -  What versions of a service are rolled out
   -  The percentage of traffic routed to each version
+  -  How many stages the rollout has
+  -  How long will each stage take
   -  The criteria for promoting to the next stage
   -  The experiments and analysis to run at each stage
 
