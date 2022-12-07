@@ -16,16 +16,17 @@
 
 .exercise[
 ```bash
-kubectl apply -f prometheus.yaml
+kubectl apply -f ~/rollouts.workshop/code/prometheus.yaml
 ```
 - And an ingress for prometheus
 ```bash
 MY_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
-sed -i s/\<MY_IP\>/$MY_IP/ prometheus-ingress.yaml
-kubectl apply -f prometheus-ingress.yaml
+sed -i s/\<MY_IP\>/$MY_IP/ ~/rollouts.workshop/code/prometheus-ingress.yaml
+kubectl apply -f ~/rollouts.workshop/code/prometheus-ingress.yaml
 ```
 ]
 
+- Prometheus is now available at `http://prom.<YOUR.MACHINE.ADDRESS>.nip.io`
 ---
 
 ## A Rollout with Metrics
