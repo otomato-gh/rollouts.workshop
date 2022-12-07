@@ -98,7 +98,7 @@
 
 .exercise[
   ```bash
-  kubectl apply -f ~/code/rollout-weighted.yaml
+  kubectl apply -f ~/rollouts.workshop/code/rollout-weighted.yaml
   ```
 ]
 
