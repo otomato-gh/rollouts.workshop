@@ -130,3 +130,15 @@
 ]
 
 - Watch the demo UI to see the canary progress
+
+---
+
+## Exercise - add a stage
+
+- Edit `~/rollouts.workshop/code/rollout-weighted.yaml` to include a stage before the final release that requires manual promotion
+
+- Apply the resulting Rollout spec
+
+- Deploy a new version with image `argoproj/rollouts-demo:red`
+
+- Watch the rollout and prmote where needed.
