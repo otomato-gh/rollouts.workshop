@@ -72,6 +72,8 @@ spec:
 
 .exercise[
     ```bash
+    MY_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
+sed -i s/\<MY_IP\>/$MY_IP/ ~/rollouts.workshop/code/analyzedcanary.yaml
     kubectl apply -f ~/rollouts.workshop/code/analyzedcanary.yaml
     ```
 ]
