@@ -1,8 +1,9 @@
-## Smart Deployments with Istio  - A Workshop
+## Progressive Delivery with Argo Rollouts  - A Workshop
 
-This workshop by [DevOpsTrain](https://devopstrain.pro) is an introduction to:
-- The Service Mesh technology
-- Istio service mesh
-- Progressive Delivery pattern implementation with Istio
+This workshop by [DevOpsTrain](https://devopstrain.pro) is an introduction to
+- Progressive Delivery
+- Argo Rollouts
+- Traefik Ingress Controller
+- Prometheus 
 
-The generated slides are available at: https://devopstrain.pro/istio
+The generated slides are available at: https://devopstrain.pro/rollouts
